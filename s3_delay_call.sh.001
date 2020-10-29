@@ -1,0 +1,28 @@
+delayed_curl() {
+  local url=$1
+  local callback=$2
+  local timestamp=$3
+  local server_id=$4
+  local seconds=$5
+
+  sleep $seconds
+  curl -X POST -H 'Content-type:text/xml' -d @"./resources/$server_id.xml" -w "%{http_code}" -i "$url" | `$callback $3 $4`
+}
+
+handler_func1() {
+  timestamp=$1
+  server_id=$2
+  cat > /tmp/curl-response_"$timestamp"_"$server_id".txt
+}
+
+server_ids=(4501 4502 4503 4504 4505 4506)
+delay_time=1
+for server_id in "${server_ids[@]}"
+do
+  echo $delay "server_id: $server_id"
+
+  current_time=`date "+%Y%m%d%H%M%S"`
+  domain=server-$server_id.localhost
+  echo "delayed_curl http://$domain/script.txt handler_func1 $current_time $server_id $delay_time &"
+  delayed_curl http://server-$server_id.localhost/script.txt handler_func1 $current_time $server_id $delay_time &
+done

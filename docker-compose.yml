@@ -1,0 +1,72 @@
+version: '3'
+services:
+  nginx-proxy-gateway:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./resources/nginx-proxy.conf:/etc/nginx/conf.d/nginx-proxy.conf:ro
+
+  container-1:
+    image: nginx
+    container_name: container-1
+    restart: always
+    environment:
+      VIRTUAL_HOST: server-4501.localhost
+    ports:
+      - 8081:80
+    volumes:
+      - ./resources/html1:/usr/share/nginx/html
+      - ./resources/nginx.conf:/etc/nginx/conf.d/default.conf
+
+  container-2:
+    image: nginx
+    container_name: container-2
+    restart: always
+    environment:
+      VIRTUAL_HOST: server-4502.localhost
+    ports:
+      - 8082:80
+    volumes:
+      - ./resources/html2:/usr/share/nginx/html
+      - ./resources/nginx.conf:/etc/nginx/conf.d/default.conf
+
+  container-3:
+    image: nginx
+    container_name: container-3
+    restart: always
+    environment:
+      VIRTUAL_HOST: server-4503.localhost
+    ports:
+      - 8083:80
+    volumes:
+      - ./resources/html3:/usr/share/nginx/html
+      - ./resources/nginx.conf:/etc/nginx/conf.d/default.conf
+
+  container-4:
+    image: nginx
+    container_name: container-4
+    restart: always
+    environment:
+      VIRTUAL_HOST: server-4504.localhost
+    ports:
+      - 8084:80
+    volumes:
+      - ./resources/html4:/usr/share/nginx/html
+      - ./resources/nginx.conf:/etc/nginx/conf.d/default.conf
+
+  container-5:
+    image: nginx
+    container_name: container-5
+    restart: always
+    environment:
+      VIRTUAL_HOST: server-4505.localhost
+    ports:
+      - 8085:80
+    volumes:
+      - ./resources/html5:/usr/share/nginx/html
+      - ./resources/nginx.conf:/etc/nginx/conf.d/default.conf
+

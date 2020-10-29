@@ -1,0 +1,26 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+<SOAP-ENV:Header/>
+<SOAP-ENV:Body>
+<ns2:Reponse xmlns:ns2="http://searchsea.com/request/">
+<ns2:accord>true</ns2:accord>
+<ns2:StatusEnrolement>KO</ns2:StatusEnrolement>
+<ns2:Reference>4504</ns2:Reference>
+<ns2:AcsTransId>2222222222</ns2:AcsTransId>
+<ns2:ScadIdTrans>F8E90082112590</ns2:ScadIdTrans>
+<ns2:ChoixAuthent>STRONG</ns2:ChoixAuthent>
+<ns2:NiveauAuthent>32</ns2:NiveauAuthent>
+<ns2:Retour>
+<ns2:CodeMessage>03</ns2:CodeMessage>
+<ns2:LibelleMessage>Téléphone OK- Mail OK</ns2:LibelleMessage>
+<ns2:RetourMetier><![CDATA[<MESSAGE>
+<LDISPOSITIF IDNISE="01">
+<NUTELF ADRRTC="0120202020" CDPORT="O" />
+<ADEMAF ADREMA="email email.com" />
+</LDISPOSITIF>
+<PARTENAIRESCAD IDPIVOT="F50032065474648 " />
+</MESSAGE>]]></ns2:RetourMetier>
+</ns2:Retour>
+</ns2:Reponse>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
