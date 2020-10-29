@@ -21,6 +21,8 @@ So the script will execute the same CURL request by changing the xml file name w
 
 And the response is :
 
+
+```xml
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
 <SOAP-ENV:Header/>
 <SOAP-ENV:Body>
@@ -47,6 +49,7 @@ And the response is :
 </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 
+```
 
 The result that we want is :
 
