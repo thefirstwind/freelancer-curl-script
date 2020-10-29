@@ -7,17 +7,16 @@ delayed_curl() {
 
   
   sleep $seconds
-  curl --silent -X POST -H 'Content-type:text/xml' -d @"./resources/$server_id.xml" -w "%{http_code}" -o "$output_file" "$url" > /dev/null 
 
-  local http_code="500"
+  http_code=$(curl --silent -X POST -H 'Content-type:text/xml' -d @"./resources/$server_id.xml" -w "%{http_code}" -o "$output_file" "$url")
   local accord_response=""
 
   if test -f "$output_file"; then
-    http_code=`cat $output_file | awk -F'[<>]' '/(ns2:accord)/ {print $3}'`
     accord_response=`cat $output_file | awk -F'[<>]' '/(ns2:Reference)/ {print $3}'`
   fi
 
   printf "%10s\t|\t%20s\t|\t%10s\t|\t%10s\t\n" "$server_id"  "server-$server_id.localhost" "$http_code" "$accord_response"
+
   
   
   
@@ -36,3 +35,4 @@ do
   # echo "delayed_curl http://$domain/script.txt $current_time $server_id $delay_time &"
   delayed_curl http://server-$server_id.localhost/script.txt $current_time $server_id $delay_time 
 done
+exit 0
